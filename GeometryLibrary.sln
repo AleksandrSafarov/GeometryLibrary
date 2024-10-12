@@ -9,6 +9,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestGeometryLibrary", "Test
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTestGeometryLibrary", "UnitTestGeometryLibrary\UnitTestGeometryLibrary.csproj", "{DC247B99-0815-4AE7-9D71-E7259AAC8AF0}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{3D6AD296-ED22-42C1-8D3A-187C34B0D0B4}"
+	ProjectSection(SolutionItems) = preProject
+		Deployment.yaml = Deployment.yaml
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU

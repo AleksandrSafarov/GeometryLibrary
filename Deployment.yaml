@@ -1,0 +1,41 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: web-app
+  labels:
+    app: web-app
+spec:
+  replicas: 3  # ”казываем 3 реплики, так как 3 пода справл€ютс€ с нагрузкой
+  selector:
+    matchLabels:
+      app: web-app
+  template:
+    metadata:
+      labels:
+        app: web-app
+    spec:
+      containers:
+      - name: web-app-container
+        image: your-image:latest
+        resources:
+          requests:
+            cpu: "0.1" # ћинимально необходимый CPU (100m)
+            memory: "128Mi" # ѕосто€нное потребление пам€ти
+          limits:
+            cpu: "0.5" # ”станавливаем лимит на CPU, так как приложение требует больше ресурсов на старте
+            memory: "128Mi"
+        readinessProbe: # ѕроверка готовности, чтобы под начал обрабатывать запросы только после инициализации
+          httpGet:
+            path: /healthz
+            port: 8080
+          initialDelaySeconds: 10 # ”читываем, что инициализаци€ занимает 5-10 секунд
+          periodSeconds: 5
+        livenessProbe:
+ 	httpGet:
+            path: /healthz
+            port: 8080
+          initialDelaySeconds: 10
+          periodSeconds: 5
+        ports:
+        - containerPort: 8080
+      restartPolicy: Always
